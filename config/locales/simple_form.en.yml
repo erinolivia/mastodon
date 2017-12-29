@@ -64,6 +64,8 @@ en:
         follow_request: Send e-mail when someone requests to follow you
         mention: Send e-mail when someone mentions you
         reblog: Send e-mail when someone boosts your status
+      user:
+        age_verification: I am at least 18 years of age and can legally view adult content
     'no': 'No'
     required:
       mark: "*"
