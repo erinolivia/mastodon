@@ -41,6 +41,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
 
     let media           = '';
+    let spoilerIcon     = null;
     let applicationLink = '';
     let reblogLink = '';
     let reblogIcon = 'retweet';
@@ -61,6 +62,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
             sensitive={status.get('sensitive')}
           />
         );
+
+        spoilerIcon = 'video-camera';
       } else {
         media = (
           <MediaGallery
@@ -71,8 +74,10 @@ export default class DetailedStatus extends ImmutablePureComponent {
             onOpenMedia={this.props.onOpenMedia}
           />
         );
+
+        spoilerIcon = 'picture-o';
       }
-    } else if (status.get('spoiler_text').length === 0) {
+    } else {
       media = <CardContainer onOpenMedia={this.props.onOpenMedia} statusId={status.get('id')} />;
     }
 
@@ -104,9 +109,9 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <DisplayName account={status.get('account')} />
         </a>
 
-        <StatusContent status={status} />
-
-        {media}
+        <StatusContent status={status} spoilerIcon={spoilerIcon}>
+          {media}
+        </StatusContent>
 
         <div className='detailed-status__meta'>
           <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>

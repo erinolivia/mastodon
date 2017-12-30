@@ -17,6 +17,8 @@ export default class StatusContent extends React.PureComponent {
     expanded: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
     onClick: PropTypes.func,
+    spoilerIcon: PropTypes.string,
+    children: PropTypes.element,
   };
 
   state = {
@@ -113,7 +115,7 @@ export default class StatusContent extends React.PureComponent {
   }
 
   render () {
-    const { status } = this.props;
+    const { status, spoilerIcon, children } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
 
@@ -138,15 +140,20 @@ export default class StatusContent extends React.PureComponent {
         </Permalink>
       )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
-      const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
+      const toggleText = [
+        hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' key='0' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' key='0' />,
+        spoilerIcon ? (
+          <i className={`fa fa-fw fa-${spoilerIcon} status__content__spoiler-icon`} aria-hidden='true' key='1' />
+        ) : null
+      ];
 
       if (hidden) {
         mentionsPlaceholder = <div>{mentionLinks}</div>;
       }
 
       return (
-        <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
+        <div className={classNames} ref={this.setRef} tabIndex='0'>
+          <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
             <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>{toggleText}</button>
@@ -154,7 +161,10 @@ export default class StatusContent extends React.PureComponent {
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
+          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle}>
+	    <div onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} dangerouslySetInnerHTML={content} />
+	    {children}
+	  </div>
         </div>
       );
     } else if (this.props.onClick) {
@@ -164,10 +174,10 @@ export default class StatusContent extends React.PureComponent {
           tabIndex='0'
           className={classNames}
           style={directionStyle}
-          onMouseDown={this.handleMouseDown}
-          onMouseUp={this.handleMouseUp}
-          dangerouslySetInnerHTML={content}
-        />
+        >
+	  <div onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} dangerouslySetInnerHTML={content} />
+	  {children}
+	</div>
       );
     } else {
       return (
@@ -176,8 +186,10 @@ export default class StatusContent extends React.PureComponent {
           ref={this.setRef}
           className='status__content'
           style={directionStyle}
-          dangerouslySetInnerHTML={content}
-        />
+        >
+	  <div dangerouslySetInnerHTML={content} />
+	  {children}
+	</div>
       );
     }
   }
