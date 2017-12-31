@@ -114,7 +114,7 @@ export default class GettingStarted extends ImmutablePureComponent {
 
     return (
       <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
-        <div className='getting-started__wrapper'>
+        <div className='getting-started__wrapper scrollable optionally-scrollable'>
           <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
           {navItems}
           <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
@@ -123,7 +123,6 @@ export default class GettingStarted extends ImmutablePureComponent {
           <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
           <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
           <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
-        </div>
 
         <div className='static-content getting-started'>
           <p>
@@ -136,6 +135,7 @@ export default class GettingStarted extends ImmutablePureComponent {
               values={{ github: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> }}
             />
           </p>
+        </div>
         </div>
       </Column>
     );
