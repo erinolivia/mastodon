@@ -1,0 +1,23 @@
+@media screen and (min-width: 631px) {
+  .column {
+    max-width: 660px;
+    min-width: 300px;
+  }
+
+  .drawer {
+    max-width: 330px;
+    min-width: 250px;
+  }
+
+  .column, .drawer {
+    flex: 1 !important;
+
+    &:first-child {
+      margin-left: auto;
+    }
+
+    &:last-child {
+      margin-right: auto;
+    }
+  }
+}
