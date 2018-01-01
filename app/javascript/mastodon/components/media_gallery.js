@@ -177,7 +177,6 @@ export default class MediaGallery extends React.PureComponent {
     standalone: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
     size: PropTypes.object,
-    height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -219,24 +218,22 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, sensitive, height } = this.props;
+    const { media, intl, sensitive } = this.props;
     const { width, visible } = this.state;
 
     let children;
 
     const style = {};
 
-    if (this.isStandaloneEligible()) {
-      if (!visible && width) {
-        // only need to forcibly set the height in "sensitive" mode
-        style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
-      } else {
-        // layout automatically, using image's natural aspect ratio
-        style.height = '';
+    // Default to a 4:3 aspect ratio
+    style.paddingTop = '75%';
+
+    // Use the image's native aspect ratio if it is between 2:1 and 1:1
+    if (media.size == 1) {
+      const aspectPercent = 100 / media.getIn([0, 'meta', 'original', 'aspect']);
+      if (aspectPercent > 50 && aspectPercent <= 100) {
+        style.paddingTop = aspectPercent.toFixed(3) + '%';
       }
-    } else {
-      // crop the image
-      style.height = height;
     }
 
     if (!visible) {
@@ -266,11 +263,13 @@ export default class MediaGallery extends React.PureComponent {
 
     return (
       <div className='media-gallery' style={style}>
-        <div className={classNames('spoiler-button', { 'spoiler-button--visible': visible })}>
-          <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
-        </div>
+        <div className='media-gallery__wrapper'>
+          <div className={classNames('spoiler-button', { 'spoiler-button--visible': visible })}>
+            <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
+          </div>
 
-        {children}
+          {children}
+        </div>
       </div>
     );
   }

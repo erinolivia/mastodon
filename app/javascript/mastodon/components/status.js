@@ -79,11 +79,11 @@ export default class Status extends ImmutablePureComponent {
   };
 
   renderLoadingMediaGallery () {
-    return <div className='media_gallery' style={{ height: '110px' }} />;
+    return <div className='media_gallery' />;
   }
 
   renderLoadingVideoPlayer () {
-    return <div className='media-spoiler-video' style={{ height: '110px' }} />;
+    return <div className='media-spoiler-video' />;
   }
 
   handleOpenVideo = startTime => {
@@ -182,8 +182,6 @@ export default class Status extends ImmutablePureComponent {
               <Component
                 preview={video.get('preview_url')}
                 src={video.get('url')}
-                width={239}
-                height={110}
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
               />
@@ -193,7 +191,7 @@ export default class Status extends ImmutablePureComponent {
       } else {
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />}
+            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} onOpenMedia={this.props.onOpenMedia} />}
           </Bundle>
         );
       }
