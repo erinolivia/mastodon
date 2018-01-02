@@ -4,12 +4,12 @@ en:
     about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
-    closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
+    closed_registrations: Registrations are currently closed on this server. However! You can find a different mastodon server to make an account on and get access to the very same network from there.
     contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
     description_headline: What is %{domain}?
-    domain_count_after: other instances
+    domain_count_after: other servers
     domain_count_before: Connected to
     extended_description_html: |
       <h3>A good place for rules</h3>
@@ -23,11 +23,11 @@ en:
       real_conversation_title: Built for real conversation
       within_reach_body: Multiple apps for iOS, Android, and other platforms thanks to a developer-friendly API ecosystem allow you to keep up with your friends anywhere.
       within_reach_title: Always within reach
-    find_another_instance: Find another instance
+    find_another_instance: Find another mastodon server
     generic_description: "%{domain} is one server in the network"
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
-    other_instances: Instance list
+    other_instances: Mastodon server list
     source_code: Source code
     status_count_after: statuses
     status_count_before: Who authored
@@ -353,7 +353,7 @@ en:
     warning: Be very careful with this data. Never share it with anyone!
     your_token: Your access token
   auth:
-    agreement_html: By signing up you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
+    agreement_html: By signing up you agree to follow <a href="%{rules_path}">the server rules</a> and <a href="%{terms_path}">our terms of service</a>.
     change_password: Security
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
@@ -398,7 +398,7 @@ en:
     description_html: This will <strong>permanently, irreversibly</strong> remove content from your account and deactivate it. Your username will remain reserved to prevent future impersonations.
     proceed: Delete account
     success_msg: Your account was successfully deleted
-    warning_html: Only deletion of content from this particular instance is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
+    warning_html: Only deletion of content from this mastodon server is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
     warning_title: Disseminated content availability
   errors:
     '403': You don't have permission to view this page.
@@ -420,7 +420,7 @@ en:
     storage: Media storage
   followers:
     domain: Domain
-    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
+    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all mastodon servers where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those servers.
     followers_count: Number of followers
     lock_link: Lock your account
     purge: Remove from followers
@@ -438,7 +438,7 @@ en:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
   imports:
-    preface: You can import data that you have exported from another instance, such as a list of the people you are following or blocking.
+    preface: You can import data that you have exported from another mastodon server, such as a list of the people you are following or blocking.
     success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: Blocking list
@@ -461,7 +461,7 @@ en:
       one: 1 use
       other: "%{count} uses"
     max_uses_prompt: No limit
-    prompt: Generate and share links with others to grant access to this instance
+    prompt: Generate and share links with others to grant access to this server
     table:
       expires_at: Expires
       uses: Uses

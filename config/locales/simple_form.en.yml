@@ -16,7 +16,7 @@ en:
         setting_noindex: Affects your public profile and status pages
         setting_theme: Affects how Mastodon looks when you're logged in from any device.
       imports:
-        data: CSV file exported from another Mastodon instance
+        data: CSV file exported from another Mastodon server
       sessions:
         otp: Enter the Two-factor code from your phone or use one of your recovery codes.
       user:
